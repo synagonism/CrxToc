@@ -724,7 +724,7 @@ function fcnTocTreeExpand_parent(elm) {
 
 /* this is the page-listener */
 /*global chrome*/
-chrome.extension.onMessage.addListener(
+chrome.runtime.onMessage.addListener(
   function (request, sender, p) {
     var
       eltBody = document.body,
@@ -742,7 +742,7 @@ chrome.extension.onMessage.addListener(
       } else if (tocNoPowerstate === 1) {
         tocNoPowerstate = 0;
       }
-      chrome.extension.sendMessage({
+      chrome.runtime.sendMessage({
         type: "setStateText",
         value: tocNoPowerstate
       });
@@ -902,7 +902,7 @@ chrome.extension.onMessage.addListener(
         $("body").css('margin', '8px 0 8px 0px');
       }
     } else if (request.type === "requestState") {
-      chrome.extension.sendMessage({type: "setStateText", value: tocNoPowerstate});
+      chrome.runtime.sendMessage({type: "setStateText", value: tocNoPowerstate});
     }
   }
 );
